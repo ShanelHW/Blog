@@ -7,6 +7,7 @@ require(`dotenv`).config()
 const app = express()
 const PORT = 3000
 
+app.use(express.static('public'))
 app.use(morgan(`dev`))
 app.use(express.json());
 
@@ -19,9 +20,8 @@ app.use(`/user`, require(`./controllers/UserRouter`))
 
 
 app.get('/', (req,res)=>{
-    res.send('hello')
+    res.render('pages/HomePage')
 })
-
 
 
 app.listen(PORT, ()=>{
