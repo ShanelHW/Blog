@@ -33,7 +33,7 @@ router.post(`/`, async (req, res) => {
     const userExists = await UserModel.find({email: req.body.email})
     console.log(userExists);
 
-    if(userExists) {
+    if(userExists[0]) {
         return res.send('User exists!');
     }
     const newUser = await UserModel.create(req.body);
