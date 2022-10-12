@@ -11,25 +11,31 @@ router.get(`/`, async (req, res) => {
     }
     catch(e){
         console.log(e);
-        res.status(403).send(`Cannot create`);
+        res.status(403).send(`Cannot GET`);
     }
 });
 
-//GET: user by ID
-router.get(`/:id`, async (req, res) => {
-    try{
-        const users = await UserModel.findById(req.params.id)
-        res.send(users)
-    }
-    catch(e){
-        console.log(e);
-        res.status(403).send(`Cannot create`);
-    }
-});
+// //GET: user by ID
+// router.get(`/:id`, async (req, res) => {
+//     try{
+//         const users = await UserModel.findById(req.params.id)
+//         res.send(users)
+//     }
+//     catch(e){
+//         console.log(e);
+//         res.status(403).send(`Cannot create`);
+//     }
+// });
 
 //POST: Create new User
 router.post(`/`, async (req, res) => {
   try {
+    const userExists = await UserModel.find({email: req.body.email})
+    console.log(userExists);
+
+    if(userExists) {
+        return res.send('User exists!');
+    }
     const newUser = await UserModel.create(req.body);
     res.send(newUser);
   } catch (e) {
