@@ -15,11 +15,10 @@ router.get(`/`, async (req, res) => {
     }
 });
 
-//GET: blog by ID
-router.get(`/:id`, async (req, res) => {
+//GET: new blog
+router.get(`/new`, async (req, res) => {
     try{
-        const blogs = await BlogModel.findById(req.params.id)
-        res.send(blogs)
+        res.render('Blogs/New')
     }
     catch(e){
         console.log(e);
@@ -28,26 +27,27 @@ router.get(`/:id`, async (req, res) => {
 });
 
 //POST: Create new Blog
-router.post(`/`, async (req, res) => {
-  try {
-    const newBlog = await BlogModel.create(req.body);
-    res.send(newBlog);
-  } catch (e) {
-    console.log(e);
-    res.status(403).send(`Cannot create`);
-  }
+// ^ Create a new Blog
+router.post('/', async (req, res) => {
+    // ^ Try-Catch Method
+    try {
+        // if (req.body.sponsored === 'on') {
+        //     req.body.sponsored === true
+        // } else {
+        //     req.body.sponsored === false
+        // }
+        const newBlog = await BlogModel.create(req.body)
+        // console.log(new)
+        res.redirect('/blog')
+        // res.send('Blog successfully created!')
+    } catch(error) {
+        console.log(error)
+        res.status(403).send('Cannot create')
 
-  // console.log(req.body)
-  // BlogModel.create(req.body)
-  // .then(data =>{
-  //     console.log(data)
-  //     res.send(data)
-  // })
-  // .catch(error =>{
-  //     console.log(error)
-  //     res.status(403).send(`Cannot create`)
-  // })
-});
+    }
+
+})
+
 
 //PuT: Update By ID
 router.put(`/:id`, async (req,res)=>{

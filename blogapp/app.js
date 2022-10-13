@@ -11,6 +11,9 @@ app.use(express.static('public'))
 app.use(morgan(`dev`))
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: false }));
+
+
 // App settings
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine());
