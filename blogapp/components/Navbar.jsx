@@ -9,5 +9,11 @@ class NavBar extends React.Component {
             <a href='/login'>Login</a>
         </nav>)
     }
+    const styles = {
+        container: {
+            display: flex,
+            justifyContent: 'space-between'
+        }
+    }
 }
 module.exports = NavBar
