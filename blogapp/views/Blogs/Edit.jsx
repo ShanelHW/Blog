@@ -1,35 +1,40 @@
 const React = require("react");
 
-class Edit extends React.Component {
+class EditBlog extends React.Component {
   render() {
-    const {blog} = this.props.blog
+    console.log(this.props.blog);
+    const { blog } = this.props;
     return (
       <div>
         <h1>Edit Blog</h1>
 
-        <form action="blog" method='post'>
-          Title: <input type="text" name="title" defaultValue={blog.title} />
+        <form action={`/blog/${blog._id}?_method=put`} method='post'>
+          <label htmlFor="title">Title</label>
+          <input type="text" value={blog.title} name='title'/> <br />
+
+          <label htmlFor="body">Body</label>
+          <textarea
+            type="text"
+            value={blog.body}
+            rows="24"
+            cols="50"
+            name='body'
+          ></textarea>{" "}
           <br />
-          Body: <input type="text" name='body' defaultValue={blog.body} />
-          <br />
-          Author: <input type="text" name="author" defaultValue={blog.author} />
-          <br />
-          Likes: <input type="text" name="likes" defaultValue={blog.likes} />
-          <br />
-          Sponsored: <input type="checkbox" name="isSponsored" defaultValue={blog.sponsored} />
-          <br />
-          <input type="submit" value="Update Blog" />
+
+          <label htmlFor="sponsored">Sponsored?</label>
+          <input type='checkbox' name='sponsored' defaultChecked={blog.sponsored ? 'on': null}/><br />
+
+          <input type='submit' value='Update Blog'/>
+
         </form>
-        <Footer />
+        
+        <form action={`/blog/${blog._id}?_method=delete`} method='post'>
+            <input type='submit' value='Delete Blog' />
+        </form>
       </div>
     );
   }
 }
 
-module.exports = Edit;
-
-// title: {type: String, required: true},
-// body: {type: String, required: true},
-// author: {type: String, required: true},
-// likes:{type: Number, default: 0},
-// sponsored: {type: Boolean, default: false},
+module.exports = EditBlog;

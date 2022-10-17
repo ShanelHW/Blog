@@ -1,74 +1,97 @@
-const express = require(`express`);
-const BlogModel = require(`../models/BlogSchema`);
+const express = require("express");
+const BlogModel = require("../models/BlogSchema");
 
 const router = express.Router();
 
-//GET all blogs
-router.get(`/`, async (req, res) => {
-    try{
-        const blogs = await BlogModel.find({})
-        res.render('Blogs/Blogs', {Blogs:blogs})
-    }
-    catch(e){
-        console.log(e);
-        res.status(403).send(`Cannot create`);
-    }
+// GET: All Blogs
+router.get("/blogs", async (req, res) => {
+  try {
+    const blogs = await BlogModel.find({});
+    res.render("Blogs/Blogs", { blogs: blogs });
+  } catch (error) {
+    console.log(error);
+    res.status(403).send("Cannot get");
+  }
 });
 
-//GET: new blog
-router.get(`/new`, async (req, res) => {
-    try{
-        res.render('Blogs/New')
-    }
-    catch(e){
-        console.log(e);
-        res.status(403).send(`Cannot create`);
-    }
+// Create Blog Form
+router.get("/new", (req, res) => {
+  try {
+    res.render("Blogs/CreateBlog");
+  } catch (error) {
+    console.log(error);
+    res.status(403).send("Not found");
+  }
 });
 
-//POST: Create new Blog
-// ^ Create a new Blog
-router.post('/', async (req, res) => {
-    // ^ Try-Catch Method
-    try {
-        // if (req.body.sponsored === 'on') {
-        //     req.body.sponsored === true
-        // } else {
-        //     req.body.sponsored === false
-        // }
-        const newBlog = await BlogModel.create(req.body)
-        // console.log(new)
-        res.redirect('/blog')
-        // res.send('Blog successfully created!')
-    } catch(error) {
-        console.log(error)
-        res.status(403).send('Cannot create')
-
+// POST: CREATE a New Blog
+router.post("/", async (req, res) => {
+  try {
+    if (req.body.sponsored === "on") {
+      req.body.sponsored = true;
+    } else {
+      req.body.sponsored = false;
     }
+    const newBlog = await BlogModel.create(req.body);
+    res.redirect("/blog");
+  } catch (error) {
+    console.log(error);
+    res.status(403).send("Cannot create");
+  }
+});
 
+// GET: Blog by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const blog = await BlogModel.findById(req.params.id);
+    res.render("Blogs/Show", { blog: blog });
+  } catch (error) {
+    console.log(error);
+    res.status(403).send("Cannot get");
+  }
+});
+
+// Render the Edit Form
+router.get('/:id/edit', async (req, res) => {
+  try {
+    const blog = await BlogModel.findById(req.params.id)
+    res.render('Blogs/Edit', {blog: blog})
+  } catch (error) {
+    console.log(error);
+    res.status(403).send("Cannot get");
+  }
 })
 
+// PUT: Update By ID
+router.put("/:id", async (req, res) => {
+  try {
+    if (req.body.sponsored === "on") {
+      req.body.sponsored = true;
+    } else {
+      req.body.sponsored = false;
+    }
+    const updatedBlog = await BlogModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { returnDocument: "after" }
+    );
+    res.redirect('/blog')
+  } catch (error) {
+    console.log(error);
+    res.status(403).send("Cannot put");
+  }
+});
 
-//PuT: Update By ID
-router.put(`/:id`, async (req,res)=>{
-    try{
-        const updatedBlog = await BlogModel.findByIdAndUpdate(req.params.id, req.body, {'returnDocument' : "after"})
-        res.send(updatedBlog)
-    }catch (e) {
-        console.log(e);
-        res.status(403).send(`Cannot create`);
-      }
-})
+// DELETE
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedBlog = await BlogModel.findByIdAndRemove(req.params.id);
+    console.log(deletedBlog);
+    res.redirect('/blog');
+  } catch (error) {
+    console.log(error);
+    res.status(403).send("Cannot put");
+  }
+});
 
-//DELETE: Remove by ID
-router.delete(`/:id`, async (req,res)=>{
-    try{
-        const deletedBlog = await BlogModel.findByIdAndRemove(req.params.id)
-        console.log(deletedBlog)
-        res.send(`Blog Deleted`)
-    }catch (e) {
-        console.log(e);
-        res.status(403).send(`Cannot create`);
-      }
-})
 module.exports = router;
