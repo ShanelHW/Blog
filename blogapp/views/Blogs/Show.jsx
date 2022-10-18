@@ -22,10 +22,12 @@ class Show extends React.Component {
                 alt=""
               ></img> */}
               <div class="card-body">
-                <h5 class="card-title">
-                  <a href={`/blogs/${blog._id}`}>{blog.title}</a>{" "}
-                  {blog.sponsored ? <i class="bi bi-cash"></i> : ""}
-                </h5>
+                <div class="card-banner">
+                  <h3 class="card-title">
+                    {blog.title}
+                    {blog.sponsored ? <i class="bi bi-cash"></i> : ""}
+                  </h3>
+                </div>
                 <li class="username">
                   <i class="bi bi-person"></i> {blog.author}{" "}
                 </li>
@@ -39,17 +41,17 @@ class Show extends React.Component {
                     <i class="bi bi-lightning"></i>
                   )}
                 </li>
-                <div class='three-button'> 
-                <a href="/blogs" class="btn btn-primary">
-                  <i class="bi bi-arrow-left"></i>
-                </a>
-                <a href={`/blogs/${blog._id}`}>
-                  <i class="bi bi-pencil-square"></i>
-                </a>
-                <a href={`/blogs/${blog._id}`}>
-                <i class="bi bi-trash3"></i>
-                </a>
-              </div>
+                <div class="three-button">
+                  <a href="/blogs" class="btn btn-primary">
+                    <i class="bi bi-arrow-left"></i>
+                  </a>
+                  <a href={`/blogs/${blog._id}`}>
+                    <i class="bi bi-pencil-square"></i>
+                  </a>
+                  <a href={`/blogs/${blog._id}`}>
+                    <i class="bi bi-trash3"></i>
+                  </a>
+                </div>
               </div>
               <br></br>
             </div>

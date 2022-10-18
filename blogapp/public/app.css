@@ -18,7 +18,8 @@ h1 {
   margin-bottom: 1em;
   padding: 1em;
   text-align: center;
-  color:rgb(74, 14, 148)
+  color:rgb(74, 14, 148);
+  max-height: 5vh;
 }
 
 a {
@@ -30,7 +31,7 @@ a {
 }
 
 a:hover {
-  color: rgb(223, 133, 255);
+  color: rgb(252, 192, 255);
 }
 
 li {
@@ -38,7 +39,7 @@ li {
 }
 
 li a {
-  color: rgb(117, 254, 252));
+  color: rgba(117, 254, 252);
 }
 
 input[type=text] {
@@ -62,9 +63,8 @@ input[type=submit] {
   font-weight:500;
 }
 
-.card-img-top{
-  height:3vh;
-  width: 45vw;
+.card-title{
+color: #ffffff;
 }
 
 .card{
@@ -75,15 +75,21 @@ input[type=submit] {
   margin-left: 2%;
   background-color: rgba(238, 196, 252, 0.701);
   position: relative;
+  border-radius: 3%;
+  padding: 1%;
+  box-shadow: 2px 2px 7px 1px #92a0a9;
    }
    .show-card{
     display: center;
-    width: 85%;
+    width: 95%;
     margin-block:2%;
     margin-bottom: 2%;
     margin-left: 2%;
     background-color: rgba(238, 196, 252, 0.701);
-    position: relative;
+    position:relative;
+    border-radius: 3%;
+    box-shadow: 2px 2px 7px 1px #1C6EA4;
+
      }
 
   .three-button{
@@ -91,5 +97,12 @@ input[type=submit] {
     margin:1%;
     align-self:center;
   }
+
+  .card-banner{
+    background-image: linear-gradient(to right, rgba(209, 124, 255, 0.905) , rgb(117, 254, 252));  margin:0;
+  }
   
+  .card-banner:hover {
+    background-image: linear-gradient(to right, rgba(117, 254, 252) , rgba(209,124,255,0.905));  margin:0;
+  }
   

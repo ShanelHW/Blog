@@ -19,7 +19,7 @@ class New extends React.Component {
           <br />
           Author: <input type="text" name="author"  />
           <br />
-          Sponsored: <input type="checkbox" name="isSponsored"  />
+          Sponsored: <input type="checkbox" name="isSponsored"  onClick='{blog.sponsored} = true'/>
           <br />
           <input type="submit" value="New Blog" />
         </form>

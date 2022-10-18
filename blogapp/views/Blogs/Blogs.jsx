@@ -15,16 +15,13 @@ class Blogs extends React.Component {
         <div>
           {this.props.blogs.map((blog, i) => (
             <div class="card">
-              <img
-                src="./media/seamless-2109393_960_720.jpg"
-                class="card-img-top"
-                alt=""
-              ></img>
               <div class="card-body">
-                <h5 class="card-title">
-                  <a href={`/blogs/${blog._id}`}>{blog.title}</a>{" "}
-                  {blog.sponsored ? <i class="bi bi-cash"></i> : ""}
-                </h5>
+                <div class="card-banner">
+                  <h3 class="card-title">
+                    {blog.title}
+                    {blog.sponsored ? <i class="bi bi-cash"></i> : ""}
+                  </h3>
+                </div>
                 <li class="username">
                   <i class="bi bi-person"></i> {blog.author}{" "}
                 </li>
@@ -38,7 +35,9 @@ class Blogs extends React.Component {
                     <i class="bi bi-lightning"></i>
                   )}
                 </li>
-                <a href={`/blogs/${blog._id}`}><i class="bi bi-arrow-right"></i></a>{" "}
+                <a href={`/blogs/${blog._id}`}>
+                  <i class="bi bi-arrow-right"></i>
+                </a>{" "}
               </div>
               <br></br>
             </div>

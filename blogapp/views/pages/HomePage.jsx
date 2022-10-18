@@ -10,8 +10,9 @@ class HomePage extends React.Component {
           <link rel="stylesheet" href="/app.css" />
         </head>
         <NavBar />
-        <section id='intro'>
         <h1>Welcome to My Blog</h1>
+        <section id='intro'>
+          <h2>Intro</h2>
           <p>
             <i class="bi bi-app-indicator"></i> 
             Incididunt same lorem ea.
