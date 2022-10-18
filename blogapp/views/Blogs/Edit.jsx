@@ -1,6 +1,6 @@
 const React = require("react");
 
-class EditBlog extends React.Component {
+class Edit extends React.Component {
   render() {
     console.log(this.props.blog);
     const { blog } = this.props;
@@ -37,4 +37,4 @@ class EditBlog extends React.Component {
   }
 }
 
-module.exports = EditBlog;
+module.exports = Edit;

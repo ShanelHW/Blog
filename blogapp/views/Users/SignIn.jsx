@@ -1,16 +1,20 @@
 const React = require("react");
 const Navbar = require("../components/Navbar");
+const Footer = require("../components/Footer");
 
 class Signin extends React.Component {
   render() {
     return (
       <div>
+        <head>
+          <link rel="stylesheet" href="/app.css" />
+        </head>
         <Navbar />
-        <h1>Sign in Page</h1>
+        <h1>Log In</h1>
 
-        <form action='/user/signin' method="post">
+        <form action='/users/signin' method="post">
           <fieldset>
-            <legend>Signin to your account</legend>
+            <legend>Enter your username and password</legend>
 
             <label htmlFor="email">Email</label>
             <br />
@@ -25,6 +29,10 @@ class Signin extends React.Component {
             <input type="submit" value="Signin" />
           </fieldset>
         </form>
+        <div>
+                    <p> New to the site?<a href="/users/signup">Sign Up</a></p>
+        </div>
+        <Footer />
       </div>
     );
   }

@@ -13,16 +13,16 @@ class Blogs extends React.Component {
         <NavBar />
         <h1>Blog Page</h1>
         <div>
-          {this.props.Blogs.map((blog, i) => (
+          {this.props.blogs.map((blog, i) => (
             <div class="card">
               <img
-                src="public/media/beans_unsplash.jpg"
+                src="./media/seamless-2109393_960_720.jpg"
                 class="card-img-top"
                 alt=""
               ></img>
               <div class="card-body">
                 <h5 class="card-title">
-                  <a href={`/blog/${blog._id}`}>{blog.title}</a>{" "}
+                  <a href={`/blogs/${blog._id}`}>{blog.title}</a>{" "}
                   {blog.sponsored ? <i class="bi bi-cash"></i> : ""}
                 </h5>
                 <li class="username">
@@ -38,9 +38,7 @@ class Blogs extends React.Component {
                     <i class="bi bi-lightning"></i>
                   )}
                 </li>
-                <a href="#" class="btn btn-primary">
-                  Go somewhere
-                </a>
+                <a href={`/blogs/${blog._id}`}><i class="bi bi-arrow-right"></i></a>{" "}
               </div>
               <br></br>
             </div>

@@ -34,12 +34,17 @@ router.post("/signup", async (req, res) => {
     // re-assign the password to the hashed password
     req.body.password = await bcrypt.hash(req.body.password, SALT)
     const user = await UserModel.create(req.body);
-    res.redirect('/user/signin')
+    res.redirect('/users/signin')
   } catch (error) {
     console.log(error);
     res.status(403).send("Cannot POST");
   }
 });
+
+// Render the Signin Form
+router.get('/signin', (req, res) => {
+  res.render('Users/Signin')
+})
 
 // Signin an User
 router.post('/signin', async (req, res) => {
@@ -50,16 +55,26 @@ router.post('/signin', async (req, res) => {
     // checks if passwords match
     const decodedPassword = await bcrypt.compare(req.body.password, user.password)
     if (!decodedPassword) return res.send('Please check your email and password!')
+    // set the user session
+    // create a new username in the session obj using the user info from db
+    console.log(req.session)
+    req.session.username = user.username
+    req.session.loggedIn = true
     // redirect to /blogs
-    res.redirect('/blog')
+    res.redirect('/blogs')
   } catch (error) {
-    
+    console.log(error);
   }
 })
 
-// Render the Signin Form
-router.get('/signin', (req, res) => {
-  res.render('Users/Signin')
+// Signout User and destroy session
+router.get('/signout', (req, res) => {
+  try {
+    req.session.destroy()
+    res.redirect('/')
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 
@@ -95,16 +110,6 @@ router.delete('/:id', async (req, res) => {
         console.log(error);
         res.status(403).send("Cannot DELETE user by id");
     }
-})
-
-// Signout User and destroy session
-router.get('/signout', (req, res) => {
-  try {
-    req.session.destroy()
-    res.redirect('/')
-  } catch (error) {
-    console.log(error);
-  }
 })
 
 module.exports = router;

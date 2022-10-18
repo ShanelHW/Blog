@@ -1,9 +1,15 @@
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css');
 
+header{
+  margin: 1%;
+}
+
 body {
-  background-color: rgb(255, 255, 255);
+  background: url('./media/computer-3163437_960_720.png');
+  color:rgb(74, 14, 148);
   margin: 0;
   font-family: 'Comfortaa', cursive;
+  margin:1%;
 }
 
 h1 {
@@ -16,7 +22,7 @@ h1 {
 }
 
 a {
-  color: rgb(117, 254, 252);
+  color: rgb(227, 255, 255);
   text-decoration: none;
   text-shadow: 1px 1px 1px rgb(74, 14, 148));
   font-size: 1.5em;
@@ -49,7 +55,6 @@ input[type=submit] {
 }
 
 #date{
-  font-size: 1em;
   font-style:oblique;
 }
 #username{
@@ -57,7 +62,34 @@ input[type=submit] {
   font-weight:500;
 }
 
-#card .title{
-
+.card-img-top{
+  height:3vh;
+  width: 45vw;
 }
 
+.card{
+  display: inline-block;
+  width: 45%;
+  margin-block:2%;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  background-color: rgba(238, 196, 252, 0.701);
+  position: relative;
+   }
+   .show-card{
+    display: center;
+    width: 85%;
+    margin-block:2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    background-color: rgba(238, 196, 252, 0.701);
+    position: relative;
+     }
+
+  .three-button{
+    display:flex;
+    margin:1%;
+    align-self:center;
+  }
+  
+  

@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 
 //Create Schema
 const userSchema = new mongoose.Schema({
-    Username: {type: String, required: true},
-    Password: {type: String, required: true},
-    Email: {type: String, required: true},    
+    username: {type: String, required: true},
+    password: {type: String, required: true},
+    email: {type: String, required: true},    
 },
 { timestamps: { Created: 'created_at' } })
 

@@ -3,11 +3,21 @@ const BlogModel = require("../models/BlogSchema");
 
 const router = express.Router();
 
+// Add Privacy to this router or routes
+// Middleware function
+router.use((req, res, next) => {
+  if (req.session.loggedIn){
+    next()
+  } else {
+    res.redirect('/user/signin')
+  }
+})
+
 // GET: All Blogs
-router.get("/blogs", async (req, res) => {
+router.get("/",  async (req, res) => {
   try {
     const blogs = await BlogModel.find({});
-    res.render("Blogs/Blogs", { blogs: blogs });
+    res.render("Blogs/Blogs", { blogs: blogs, loggedInUser: req.session.username });
   } catch (error) {
     console.log(error);
     res.status(403).send("Cannot get");
@@ -17,7 +27,7 @@ router.get("/blogs", async (req, res) => {
 // Create Blog Form
 router.get("/new", (req, res) => {
   try {
-    res.render("Blogs/CreateBlog");
+    res.render("Blogs/New");
   } catch (error) {
     console.log(error);
     res.status(403).send("Not found");
@@ -32,6 +42,8 @@ router.post("/", async (req, res) => {
     } else {
       req.body.sponsored = false;
     }
+    // set the author to the loggedIn user
+    req.body.author = req.session.username
     const newBlog = await BlogModel.create(req.body);
     res.redirect("/blog");
   } catch (error) {
@@ -75,7 +87,7 @@ router.put("/:id", async (req, res) => {
       req.body,
       { returnDocument: "after" }
     );
-    res.redirect('/blog')
+    res.redirect('/blogs')
   } catch (error) {
     console.log(error);
     res.status(403).send("Cannot put");
@@ -87,7 +99,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const deletedBlog = await BlogModel.findByIdAndRemove(req.params.id);
     console.log(deletedBlog);
-    res.redirect('/blog');
+    res.redirect('/blogs');
   } catch (error) {
     console.log(error);
     res.status(403).send("Cannot put");
