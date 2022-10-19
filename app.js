@@ -32,7 +32,7 @@ app.use(`/users`, require(`./blogapp/controllers/UserRouter`))
 
 
 app.get('/', (req,res)=>{
-    res.render('.blogapp/views/pages/HomePage')
+    res.render('./blogapp/views/pages/HomePage')
 })
 
 
