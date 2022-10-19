@@ -18,6 +18,7 @@ class Navbar extends React.Component {
           }
           else{
             <a href="/users/signin">
+              {/* username goes here */}
               <i class="bi bi-person-plus"></i>
             </a>
           }

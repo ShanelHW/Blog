@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
     // set the author to the loggedIn user
     req.body.author = req.session.username
     const newBlog = await BlogModel.create(req.body);
-    res.redirect("/blog");
+    res.redirect("/blogs");
   } catch (error) {
     console.log(error);
     res.status(403).send("Cannot create");

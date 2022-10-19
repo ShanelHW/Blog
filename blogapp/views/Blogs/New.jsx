@@ -12,7 +12,7 @@ class New extends React.Component {
         <NavBar />
         <h1>Create New Blog</h1>
 
-        <form action="/blog" method='post'>
+        <form action="/blogs" method='post'>
           Title: <input type="text" name="title" />
           <br />
           Body: <textarea type="text" name='body'  />
