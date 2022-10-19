@@ -27,8 +27,8 @@ app.use(session({
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine());
 
-app.use(`/blogs`, require(`./controllers/BlogRouter`))
-app.use(`/users`, require(`./controllers/UserRouter`))
+app.use(`/blogs`, require(`.blogapp/controllers/BlogRouter`))
+app.use(`/users`, require(`.blogapp/controllers/UserRouter`))
 
 
 app.get('/', (req,res)=>{
